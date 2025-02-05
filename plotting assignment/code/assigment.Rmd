@@ -49,8 +49,6 @@ pokemon_dataset <- read_delim("../data/pokemon_dataset.csv",
     delim = ",", escape_double = FALSE, col_names = TRUE, show_col_types = FALSE,
     trim_ws = TRUE)
 
-View(pokemon_dataset)
-
 ```
 # Data Wrangling  
 
@@ -98,9 +96,12 @@ data_bad_plot <- pokemon_dataset %>%
 ### Plot Specifications
 
 ```{r}
+
+font_add_google("Fira Sans", "fira_sans")
+
 #Define color and font used in the plot
 gp_color <- "grey97"
-gp_font_family <- "fira"
+gp_font_family <- "fira_sans"
 
 #Plot subtitle
 plot_subtitle = glue("An experiment was conducted to measure and compare the effectiveness of various feed supplements on the growth rate of chickens. Newly hatched chicks were randomly allocated into six groups, and each group was given a different feed supplement. Their weights in grams after six weeks are given along with feed types.
@@ -117,13 +118,15 @@ good_plot_main <- data_good_plot %>%
   ggplot(aes(feed, weight)) +
   
 # Distribution of weights
-  stat_halfeye(fill_type = "segments", alpha = 0.5, width = 0.8) +
+  stat_halfeye(fill_type = "segments", alpha = 0.8, width = 0.8) +
   
 # Bars below distribution
   stat_interval() +
   
 # Mean of each feed type as a point
-  stat_summary(geom = "point", fun = mean) +
+  stat_summary(geom = "point", fun = mean, color = "yellow", size = 2) +
+    
+  geom_point(alpha = 0.5)+
   
 # Mean weight line
   geom_hline(yintercept = mean_weight_all, col = "grey30", lty = "dashed") +
@@ -140,7 +143,7 @@ good_plot_main <- data_good_plot %>%
 # Scale and label adjustments
   scale_x_discrete(labels = toupper, expand = c(0.1, 0)) +
   scale_y_continuous(breaks = seq(100, 400, 50)) +
-  scale_color_manual(values = MetBrewer::met.brewer("Hokusai3")) +
+  scale_color_manual(values = MetBrewer::met.brewer("Klimt")) +
   coord_flip(ylim = c(50, 450), clip = "off") +
   guides(col = "none") +
   
@@ -185,7 +188,7 @@ good_plot_legend <- df_for_legend %>%
 # Plot elements
   stat_halfeye(fill_type = "segments", alpha = 0.3) +
   stat_interval() +
-  stat_summary(geom = "point", fun = median) +
+  stat_summary(geom = "point", fun = median, color = "yellow", size = 2) +
   
 # Annotations with descriptions
   annotate(
@@ -214,7 +217,7 @@ good_plot_legend <- df_for_legend %>%
   ) +
   
 # Color scale and layout adjustments
-  scale_color_manual(values = MetBrewer::met.brewer("Hokusai3")) +
+  scale_color_manual(values = MetBrewer::met.brewer("Klimt")) +
   coord_flip(xlim = c(0.1, 1.5), ylim = c(200, 450), expand = TRUE) +
   guides(color = "none") +
   
@@ -228,6 +231,7 @@ good_plot_legend <- df_for_legend %>%
 
 
 ```
+
 ### Final Plot 
 ```{r, fig.width=10, fig.height=6, dpi=300}
 
