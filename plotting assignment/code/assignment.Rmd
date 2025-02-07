@@ -1,6 +1,6 @@
 ---
-title: "Assigment for Data Wrangling and Vizualization Course"
-subtitle: "Plotting Assigment "
+title: "Assignment for Data Wrangling and Vizualization Course"
+subtitle: "Plotting Assignment "
 author: "Katrin Grings"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -36,7 +36,7 @@ library(patchwork)
 library(showtext)
 library(devtools)
 devtools::install_github("schochastics/Rokemon")
-library(Rokemon)
+library(Rokemon) #Pokemon Theme 
 library(extrafont)
 ```
 
@@ -242,7 +242,7 @@ good_plot_final <- good_plot_main +
 good_plot_final
 ```
 
-### Explaination
+### Explanation
 
 As a template I used the following template https://r-graph-gallery.com/web-ridgeline-plot-with-inside-plot-and-annotations.html and adjusted it for the chickwts data set from base r.
 
@@ -337,14 +337,14 @@ bad_plot <- data_bad_plot %>%
 bad_plot
 ```
 
-### Explaination
+### Explanation
 
 
 What Makes This Plot Bad:
 <ul>
 <li> It is visually cluttered, hard to interpret, and overplotted. </li>
-<li> Attack and defense stats are plotted differently, which makes them seem like they are visualizing the same values with different plots. </li>
-<li> Using only one color makes the intervals of the attack stats unreadable. Without an explanation, it’s impossible to understand what precentages these intervals represent. </li>
+<li> The way attack and defence stats are visualized makes it seem like as if they are two aspects of the same variable but actually they show two different values. </li>
+<li> Using only one color makes the intervals of the attack stats unreadable. Without an explanation, it’s impossible to understand what percentages these intervals represent. </li>
 <li> Total base stats, attack, and defense are all plotted on the same axis. Since the axis is stretched due to the high values of the base stats, it becomes difficult to distinguish differences in attack and defense. Additionally, the x-axis lacks labels in this section of the plot. </li>
 <li> The large number of secondary types, along with their color choices and the green background, combined with low transparency, makes it nearly impossible to identify the exact secondary type. </li>
 <li> The size of the dots represents the number of health points, but this information is unreadable. The legend shows a circle, but most points are actually squares, which adds to the confusion. </li>
